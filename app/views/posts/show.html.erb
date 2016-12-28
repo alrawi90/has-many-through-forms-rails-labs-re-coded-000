@@ -7,7 +7,8 @@
 <ul>
 	<% @post.try(:comments).each do |comment| %>
 	<%if comment.content%>
-		<li><%= link_to comment.user.try(:username), user_path(comment.user) if comment.user %> says: <%= comment.content %>
+		<li>
+		<%= comment.user.username ? comment.user.try(:username) : user_path(comment.user) if comment.user %> says: <%= comment.content %>
 			<%users << comment.user if comment.user.id%>
 
 		</li>
